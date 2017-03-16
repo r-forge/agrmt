@@ -6,7 +6,7 @@
 \usepackage[nogin]{Sweave}  % no size/scaling options passed on; set size manually
 
 \title{An Introduction to the R Package Agrmt}
-\author{Didier Ruedin\\University of Neuch\^atel and University of the Witwatersrand\\didier.ruedin@wolfson.oxon.org}
+\author{Didier Ruedin\\University of Neuch\^atel and University of the Witwatersrand\\didier.ruedin@unine.ch}
 
 %\VignetteIndexEntry{R Package to Calculate agreement A}
 %\VignettePackage{agrmt}
