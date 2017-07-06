@@ -1,3 +1,10 @@
+agrmt 1.40.7
+------------
+
+- clarification of 'polarization' using van der Eijk's measure in vignette and on web
+- clarification in documentation that 'agreementError' and 'compareAgreement' take population vectors, not frequency vectors
+- including [3 0 0 0 0] as example in the code, not just the description of agreement
+
 agrmt 1.40.6
 ------------
 

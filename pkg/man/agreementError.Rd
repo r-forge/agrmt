@@ -4,7 +4,7 @@
 \description{Calculate agreement in ordered rating scales, but simulates coding error.}
 \usage{agreementError(V, n=500, e=0.01, pos=FALSE)}
 \arguments{
-  \item{V}{A vector with an entry for each individual}
+  \item{V}{A vector with an entry for each individual, not a frequency vector}
   \item{n}{Number of samples in the simulation}
   \item{e}{Proportion of samples for which errors are simulated}
   \item{pos}{Vector of possible positions. If FALSE, the values occurring in V are set as the possible values}}
@@ -26,5 +26,9 @@ agreementError(V, e=1)
 z <- replicate(1000, agreementError(V))
 mean(z) 
 hist(z) # etc.
-# you could also use the compareAgreement function.
+# the example mentioned, population vector [3 0 0 0 0]:
+V2 <- c(1,1,1)
+agreementError(V2, pos=1:5)
+# you can also use the compareAgreement function
+compareAgreement(V2, pos=1:5)
 }
