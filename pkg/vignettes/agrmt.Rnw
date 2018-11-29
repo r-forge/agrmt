@@ -8,7 +8,7 @@
 \title{An Introduction to the R Package Agrmt}
 \author{Didier Ruedin\\University of Neuch\^atel and University of the Witwatersrand\\didier.ruedin@unine.ch}
 
-%\VignetteIndexEntry{R Package to Calculate agreement A}
+%\VignetteIndexEntry{R Package to Calculate Agreement, Consensus, Dispersion, and Polarization}
 %\VignettePackage{agrmt}
 
 \begin{document}
@@ -19,7 +19,7 @@
 
 \section{Overview}
 
-This package calculates agreement (consensus, polarization, dispersion) in ordered rating scales. It principally implements Cees van der Eijk's \citeyearpar{vdE2001} measure of agreement `A', which can be used to describe agreement, consensus, or polarization among respondents. Other measures of agreement or consensus are included, as is Galtung's \citeyearpar{Galtung} AJUS system.
+This package calculates agreement (consensus, concentration, polarization, dispersion) in ordered rating scales. It implements Cees van der Eijk's \citeyearpar{vdE2001} algorithmic measure of agreement `A', which can be used to describe agreement, consensus, or polarization among respondents. Several other measures of agreement or consensus are included, as is Galtung's \citeyearpar{Galtung} AJUS system.
 
 \section{Getting Data In}
 
@@ -45,7 +45,7 @@ Some measures require standardized frequency vectors, that is the frequencies ex
 
 \subsection{Concept: Agreement in Ordered Rating Scales}
 
-Ordered rating scales are a common format in surveys, and often we are interested in the extent to which responses are in agreement (whether there is consensus, whether there is concentration among the responses). Although frequently used, standard deviations are in this case an inappropriate measure. Van der Eijk's measure of agreement `A' is an algorithm that disaggregates frequency distributions into component parts called layers. At the level of these layers, agreement can easily be determined, and the measure of agreement provides the weighted average.
+Ordered rating scales are a common format in surveys, and often we are interested in the extent to which responses are in agreement (whether there is consensus, whether there is concentration among the responses). Although frequently used, several researchers questioned whether standard deviations are appropriate in this case. Van der Eijk's measure of agreement `A' is an algorithm that disaggregates frequency distributions into component parts called layers. At the level of these layers, agreement can easily be determined, and the measure of agreement provides the weighted average.
 
 We can use the example provided by van der Eijk (p.331) to illustrate the use of layers.
 
@@ -97,7 +97,7 @@ close.screen(all=TRUE)
 
 \subsection{Calculating Agreement}
 
-To calculate agreement, we simply call \texttt{agreement} with the frequency vector as the argument. There is normally \emph{no reason} to use the old algorithm, which can be set using \texttt{old=TRUE}.
+To calculate agreement, we simply call \texttt{agreement} with the frequency vector as the argument. There is normally \emph{no reason} to use the old algorithm, which can be set using \texttt{old=TRUE}. This is the `old' algorithm as described by Van der Eijk.
 
 Let us illustrate this using the data from above.
 
