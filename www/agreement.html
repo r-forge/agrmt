@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Agreement A in R</title>
+  <title>Agreement, Consensus, Dispersion, and Polarization in R</title>
   <meta name="viewport" content="width=device-width; initial-scale=1; maximum-scale=1">
   <link rel="stylesheet" href="responsive.css" type="text/css" />
   <!--[if IE]> <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
@@ -23,7 +23,7 @@
   </header>
 <section>
 <h1>Agreement <i>A</i> in R</h1>
-<p>Ordered rating scales are a common format in surveys, and often we are interested in the extent to which responses are in agreement (whether there is consensus, whether there is concentration among the responses). Standard deviations are in this case an inappropriate measure. Van der Eijk's measure of agreement A disaggregates frequency distributions into component parts called layers. At the level of these layers, agreement can easily be determined, and the measure of agreement provides the weighted average.<br><br>
+<p>Ordered rating scales are a common format in surveys, and often we are interested in the extent to which responses are in agreement (whether there is consensus, whether there is concentration among the responses, or by contrast whether there is dispersion or polarization). Standard deviations are commonly considered an inappropriate measure in this situation. Van der Eijk's measure of agreement A disaggregates frequency distributions into component parts called layers. At the level of these layers, agreement can easily be determined, and the measure of agreement provides the weighted average.<br><br>
 We can use the example provided by van der Eijk (p.331) to illustrate the use of layers.</p>
 <table class="p"><tr><th>Position on rating scale</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th></tr>
 <tr><th>Observed frequencies</th><th>30</th><th>40</th><th>210</th><th>130</th><th>530</th><th>50</th><th>10</th></tr>
@@ -43,8 +43,8 @@ We can use the example provided by van der Eijk (p.331) to illustrate the use of
 Levels of agreement range from -1 to 1. There are three ideal-typical positions that help interpretation. If all respondents agree on the category (position), agreement is 1. If the respondents are evenly spread, and each category has the same number of responses, agreement is 0. If respondents are divided, and half the responses are in one extreme category, and the other half are in the other extreme category, agreement is -1. In the figure, I also included an example between these ideal types. Agreement is only defined if there are at least three response categories, and it does not tell you which of the categories is the most common one.</p>
 <img src="agreement-plot.png">
 <h2 class="top">Going Further</h2>
-<p>For further documentation, please refer to the original contribution by van der Eijk (2001), and refer to the package help files and vignette. You may also consider the other measures of agreement or consensus available in the package, such as Leik's measure of ordinal dispersion (<kbd>Leik</kbd>), Tatsle and Wierman (<kbd>consensus</kbd>), Blair an Lacy (<kbd>dsquared</kbd>, <kbd>lsquared</kbd>, <kbd>BlairLacy</kbd>), Kvalseth (<kbd>Kvalseth</kbd>), Berry and Mielke's IOV (<kbd>BerryMielke</kbd>), or Garcia-Montalvo and Reynal-Querol (<kbd>MRQ</kbd>). A measure of <kbd>polarization</kbd> based on the van der Eijk measure is also provided.<br><br>
+<p>For further documentation, please refer to the original contribution by van der Eijk (2001), and refer to the package help files and vignette. You may also consider the other measures of agreement or consensus available in the package, such as Leik's measure of ordinal dispersion (<kbd>Leik</kbd>), Tatsle and Wierman (<kbd>consensus</kbd>), Blair and Lacy (<kbd>dsquared</kbd>, <kbd>lsquared</kbd>, <kbd>BlairLacy</kbd>), Kvalseth (<kbd>Kvalseth</kbd>), Berry and Mielke's IOV (<kbd>BerryMielke</kbd>), or Garcia-Montalvo and Reynal-Querol (<kbd>MRQ</kbd>). A measure of <kbd>polarization</kbd> based on the van der Eijk measure is also provided.<br><br>
 Van der Eijk, C. 2001. &quot;Measuring agreement in ordered rating scales.&quot; <i>Quality and Quantity</i> 35(3): 325-341.</p>
-<p class="small">Last update 6 July 2017</p>
+<p class="small">Last update 29 November 2018</p>
 </section>
 </body></html>
