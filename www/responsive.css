@@ -84,6 +84,8 @@ p {
 
 .small{font-size: 0.8em;}
 
+.small-badge {width: 108px;}
+
 table, th, td {
     padding: 3px 7px 2px 7px;
     font-weight: normal;
