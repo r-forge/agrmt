@@ -23,7 +23,7 @@ This package calculates agreement (consensus, concentration, polarization, dispe
 
 \section{Getting Data In}
 
-The functions in this package use what I refer to as frequency vectors. A frequency vector describes the number of observations in a given category. For example, the vector [10, 20, 30, 15, 4] describes 10 observations with position 1, 20 observations with position 2, 30 observations with position 3, 15 observations with position 4, and 4 observations with position 5. At least three categories are required to calculate agreement.
+The functions in this package use what I refer to as frequency vectors. A frequency vector describes the number of observations in a given category. For example, the vector $[10, 20, 30, 15, 4]$ describes 10 observations with position 1, 20 observations with position 2, 30 observations with position 3, 15 observations with position 4, and 4 observations with position 5. At least three categories are required to calculate agreement.
 
 There are many ways to create frequency vectors, including the \texttt{table} function in R. Your data may already come in the form of a frequency vector. The package provides a helper function \texttt{collapse} to cater with empty cells. Consider a very simple case to illustrate the difference:
 
@@ -56,7 +56,7 @@ Observed frequencies     & 30 & 40 & 210 & 130 & 530 & 50 & 10 \\
 \end{tabular}
 \end{table}
 
-The observed frequencies (30, 40, 210, 130, 530, 50, 10) constitute a frequency vector. The measure of agreement divides this into layers, starting with the lowest observed frequencies. The level of agreement for this layer is calculated, and weighted by the number of observations in this layer. This is repeated for all layers, using any additional observations, until we reach the highest observed frequencies. We begin with the cell with the lowest frequencies, in this case position 7 with 10 observations. This means that for the first layer, there are 10 observations for each position. This gives a level of agreement of 0 for this level. The weight of the level is the number of observations in this layer (70; that is 7 [positions] times 10 [observations]) divided by the total number of observations (1000). For the second layer, we have already used all 10 observations for position 7, so a 0 will be added. The second lowest frequency is the 20 left for position 1 (30 original observations minus 10 in level 1). The level of agreement for the second layer is 0.17, with a weight of 0.12.
+The observed frequencies (30, 40, 210, 130, 530, 50, 10) constitute a frequency vector. The measure of agreement divides this into layers, starting with the lowest observed frequencies. The level of agreement for this layer is calculated, and weighted by the number of observations in this layer. This is repeated for all layers, using any additional observations, until we reach the highest observed frequencies. We begin with the cell with the lowest frequencies, in this case position 7 with 10 observations. This means that for the first layer, there are 10 observations for each position. This gives a level of agreement of 0 for this level. The weight of the level is the number of observations in this layer (70; that is 7 [positions] times 10 [observations]) divided by the total number of observations (1000). In this example, the weight of the first layer is $\frac{70}{1000}=0.07$. For the second layer, we have already used all 10 observations for position 7, so a 0 will be added. The second lowest frequency is the 20 left for position 1 (30 original observations minus 10 in level 1). The level of agreement for the second layer is 0.17, with a weight of 0.12.
 
 We continue this way until all observations are used:
 
@@ -74,13 +74,13 @@ Total   & 30 & 40 & 210 & 130 & 530 & 50 & 10 &       &         & \\
 \end{tabular}
 \end{table}
 
-The frequency vector is visible in the bottom row (`total'). To calculate the level of agreement of each layer, the pattern of this layer is considered. A pattern consists of 0 and 1. A 1 denotes any value other than 1 in the layer. For instance, in layer 2, all 20 are replaced with 1 to give the pattern; in layer 6 all the 80 are replaced with 1 to give the pattern.
+The frequency vector is visible in the bottom row (`total'). To calculate the level of agreement of each layer, the pattern of this layer is considered. A pattern consists of 0 and 1. A 1 denotes any value other than 0 in the layer. For instance, in layer 2, all 20 are replaced with 1 to give the pattern; in layer 6 all the 80 are replaced with 1 to give the pattern.
 
 Using the weighted average, we get a level of agreement of 0.61 in this example. The outlined procedure can be applied to any ordered frequency distribution.
 
 \subsection{Interpretation of Agreement Scores}
 
-Levels of agreement range from -1 to 1. There are three ideal-typical positions that help interpretation of the scores. If all respondents agree on the category (position), agreement is 1. This is illustrated in the top-left corner of the figure. If the respondents are evenly spread, and each category has the same number of responses, agreement is 0. This is illustrated at the top right of the figure. If respondents are divided, and half the responses are in one extreme category, and the other half are in the other extreme category, agreement is -1. This is shown at the bottom left of the figure. The following figure also includes an example between these ideal types (bottom right). Agreement is only defined if there are at least three response categories, and it does not tell you which of the categories is the most common one. For this reason, it is also advisable to look at an appropriate measure of central tendency, such as the interpolated median.
+Levels of agreement range from $-1$ to $1$. There are three ideal-typical positions that help interpretation of the scores. If all respondents agree on the category (position), agreement is 1. This is illustrated in the top-left corner of the figure. If the respondents are evenly spread, and each category has the same number of responses, agreement is 0. This is illustrated at the top right of the figure. If respondents are divided, and half the responses are in one extreme category, and the other half are in the other extreme category, agreement is $-1$. This is shown at the bottom left of the figure. The following figure also includes an example between these ideal types (bottom right). Agreement is only defined if there are at least three response categories, and it does not tell you which of the categories is the most common one. For this reason, it is also advisable to look at an appropriate measure of central tendency, such as the interpolated median.
 
 \begin{Scode}{echo=FALSE,fig=TRUE, results=hide, width=4, height=5}
 split.screen(c(2,2))
@@ -133,7 +133,7 @@ When agreement is calculated on ordered rating scales from sources that are manu
 
 The function \texttt{compareAgreement} returns a list with agreement `A' without simulated coding errors (i.e. simply calculated), the mean of agreement with simulated coding error, and the standard deviation of agreement with simulated coding error. Default values for the simulation are: n=500 samples, e=0.01 proportion of samples that are simulated as mis-coded, N=500 replications for calculating the mean and standard deviation. Given that these coding errors are simulated, each run will give a different value of the mean and standard deviation.
 
-The helper function \texttt{agreementError} is used for the actual simulations, so different measures of central tendency can be calculated. Contrary to bootstrapping, it is not necessary to have all positions observed in the frequency vector. To understand the advantage, take an extreme example: [3 0 0 0 0]. Here we have three observations at the first position, but none at the others. Bootstrapping will always lead to the same agreement score (perfect agreement). This can be misleading if coding error can be assumed. For example, if these three observations refer to a `strongly agree' answer, it is usually conceivable that some of these answers could refer to `somewhat agree'. The function lets you specify how many of the observations should be assumed to be potentially mis-coded, and calculates agreement accordingly. If an observation is assumed to be potentially mis-coded, it is randomly set to the position to the left, the position to the right, or the position itself. If the first or last observation is chosen, the simulation takes care not to suggest values that could not occur.
+The helper function \texttt{agreementError} is used for the actual simulations, so different measures of central tendency can be calculated. Contrary to bootstrapping, it is not necessary to have all positions observed in the frequency vector. To understand the advantage, take an extreme example: $[3 0 0 0 0]$. Here we have three observations at the first position, but none at the others. Bootstrapping will always lead to the same agreement score (perfect agreement). This can be misleading if coding error can be assumed. For example, if these three observations refer to a `strongly agree' answer, it is usually conceivable that some of these answers could refer to `somewhat agree'. The function lets you specify how many of the observations should be assumed to be potentially mis-coded, and calculates agreement accordingly. If an observation is assumed to be potentially mis-coded, it is randomly set to the position to the left, the position to the right, or the position itself. If the first or last observation is chosen, the simulation takes care not to suggest values that could not occur.
 
 Usage: \texttt{compareAgreement(expand(V))}.
 
@@ -201,7 +201,7 @@ The Shannon entropy can be calculated using \texttt{entropy}. This function foll
 
 The package includes a few additional functions for frequency vectors. The AJUS classification of distributions is one: \citet{Galtung} introduced a system to classify distributions according to shape. This is a means to reduce complexity. For full details refer to Galtung's book on social research.
 
-\texttt{ajus(distribution)} gives you the shape or type of the distribution, as well as whether there is a skew. I have added two new types F and L to complement the ones identified by Galtung. The skew is given as -1 for a negative skew, 0 for absence of skew, or +1 for a positive skew.
+\texttt{ajus(distribution)} gives you the shape or type of the distribution, as well as whether there is a skew. I have added two new types F and L to complement the ones identified by Galtung. The skew is given as $-1$ for a negative skew, 0 for absence of skew, or +1 for a positive skew.
 
 You can choose whether to use a strict AJUS system following Galtung, or use the modified AJUSFL system that includes the L and F types. The default is the modified variant. The modified system draws a distinction between J and L distributions, depending on whether they increase or decrease: J types have a peak on the right, L types have the peak on the left. The strict AJUS system has no F type and returns NA instead.
 
@@ -291,14 +291,14 @@ V2 <- c(3,0,4,1)
 modes(V2) # will find position 3
 \end{Scode}
 
-This example illustrates the \texttt{pos} argument. The frequency vector from the previous example is reused, but it is specified that the categories refer to values of [-1, 0, 1, 2]. The mode identified reflects this change, while the position is unchanged (since the same frequency vector is used).
+This example illustrates the \texttt{pos} argument. The frequency vector from the previous example is reused, but it is specified that the categories refer to values of $[-1, 0, 1, 2]$. The mode identified reflects this change, while the position is unchanged (since the same frequency vector is used).
 
 \begin{Scode}{echo=TRUE,fig=FALSE}
 # Example 3: providing categories
 modes(V2,pos=-1:2) # will still find position 3, but give the value of 1 as mode
 \end{Scode}
 
-This example illustrates multiple modes. The frequencies o 528 and 530 are nearly the same, that is to say given the (default) tolerance they are considered the same.
+This example illustrates multiple modes. The frequencies of 528 and 530 are nearly the same, that is to say given the (default) tolerance they are considered the same.
 
 \begin{Scode}{echo=TRUE,fig=FALSE}
 # Example 4: similar values
