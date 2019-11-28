@@ -8,7 +8,7 @@
 \title{An Introduction to the R Package Agrmt}
 \author{Didier Ruedin\\University of Neuch\^atel and University of the Witwatersrand\\didier.ruedin@unine.ch}
 
-%\VignetteIndexEntry{R Package to Calculate Agreement, Consensus, Dispersion, and Polarization}
+%\VignetteIndexEntry{R Package to Calculate Concentration and Dispersion in Ordered Rating Scales}
 %\VignettePackage{agrmt}
 
 \begin{document}
@@ -19,17 +19,24 @@
 
 \section{Overview}
 
-This package calculates agreement (consensus, concentration, polarization, dispersion) in ordered rating scales. It implements Cees van der Eijk's \citeyearpar{vdE2001} algorithmic measure of agreement `A', which can be used to describe agreement, consensus, or polarization among respondents. Several other measures of agreement or consensus are included, as is Galtung's \citeyearpar{Galtung} AJUS system.
+This package calculates concentration (agreement, consensus, polarization, dispersion) in ordered rating scales. It implements various measures of concentration and dispersion. The package provides a generic city-block based \texttt{concentration} measure, and a generic measure of dispersion (\texttt{dist}). To use Van der Eijk's \citeyearpar{vdE2001} algorithmic approach agreement `A', call \texttt{agreement}. The derived \texttt{polarization} lets you calculate a polarization score based on agreement A. Values are inverted and standardized to [0, 1]. Other specific measures implemented: Leik's measure of ordinal dispersion (\texttt{Leik}), Tatsle and Wierman's (\texttt{consensus}), Blair and Lacy's (\texttt{dsquared}, \texttt{lsquared}, and \texttt{BlairLacy}), the measure by Kvalseth (\texttt{Kvalseth}), Berry and Mielke's IOV (\texttt{BerryMielke}), Reardon (\texttt{Reardon}) and Garcia-Montalvo and Reynal-Querol's (\texttt{MRQ})
+
+
+The package also includes functions to classify distributions according to Galtung's \citeyearpar{Galtung} AJUS-system (\texttt{ajus}), and changes over time according to Galtung's \citeyearpar{Galtung} ISD-system (\texttt{isd}). Moreover, the function \texttt{modes} can identify the position of multiple modes.
 
 \section{Getting Data In}
 
-The functions in this package use what I refer to as frequency vectors. A frequency vector describes the number of observations in a given category. For example, the vector $[10, 20, 30, 15, 4]$ describes 10 observations with position 1, 20 observations with position 2, 30 observations with position 3, 15 observations with position 4, and 4 observations with position 5. At least three categories are required to calculate agreement.
+The functions in this package use what I refer to as frequency vectors. A frequency vector describes the number of observations in a given category. For example, the vector $[10, 20, 30, 15, 4]$ describes 10 observations with position 1, 20 observations with position 2, 30 observations with position 3, 15 observations with position 4, and 4 observations with position 5 (see Figure for a graphical distribution of this frequency vector). At least three categories are required to calculate agreement.
+
+\begin{Scode}{echo=FALSE, fig=TRUE, height=3, width=4}
+plot(c(10, 20, 30, 15, 4, 4), type="s", bty="n", ylab="Frequency", xlab="")
+\end{Scode}
 
 There are many ways to create frequency vectors, including the \texttt{table} function in R. Your data may already come in the form of a frequency vector. The package provides a helper function \texttt{collapse} to cater with empty cells. Consider a very simple case to illustrate the difference:
 
 \begin{Scode}{echo=TRUE,fig=FALSE}
 library(agrmt)
-x <- c(1,1,3) # these are our data
+x = c(1,1,3) # these are our data
 # 2 observations with position 1,
 # 1 observation with position 3
 table(x)

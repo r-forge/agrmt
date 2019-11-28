@@ -1,3 +1,11 @@
+agrmt 1.41
+----------
+
+- adding new functions by Clem Aeppli (Reardon, censor, truncate, concentration, dist)
+- clarifications in the documentation
+- rewriting some of the documentation
+- fixing typos in descriptions
+
 agrmt 1.40.9
 ----------
 
