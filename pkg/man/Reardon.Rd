@@ -10,4 +10,4 @@
 \value{measure of entropy}
 \references{Reardon, S. 2009. Measures of Ordinal Segregation. Research on Economic Inequality 17:129-55. <DOI: 10.1108/S1049-2585(2009)0000017011>}
 \author{Clem Aeppli}
-\seealso{\code{\link{dist}}}
+\seealso{\code{\link{disper}}}

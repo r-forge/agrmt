@@ -8,7 +8,7 @@
 \title{An Introduction to the R Package Agrmt}
 \author{Didier Ruedin\\University of Neuch\^atel and University of the Witwatersrand\\didier.ruedin@unine.ch}
 
-%\VignetteIndexEntry{R Package to Calculate Concentration and Dispersion in Ordered Rating Scales}
+%\VignetteIndexEntry{Calculate Concentration and Dispersion in Ordered Rating Scales}
 %\VignettePackage{agrmt}
 
 \begin{document}
@@ -19,10 +19,9 @@
 
 \section{Overview}
 
-This package calculates concentration (agreement, consensus, polarization, dispersion) in ordered rating scales. It implements various measures of concentration and dispersion. The package provides a generic city-block based \texttt{concentration} measure, and a generic measure of dispersion (\texttt{dist}). To use Van der Eijk's \citeyearpar{vdE2001} algorithmic approach agreement `A', call \texttt{agreement}. The derived \texttt{polarization} lets you calculate a polarization score based on agreement A. Values are inverted and standardized to [0, 1]. Other specific measures implemented: Leik's measure of ordinal dispersion (\texttt{Leik}), Tatsle and Wierman's (\texttt{consensus}), Blair and Lacy's (\texttt{dsquared}, \texttt{lsquared}, and \texttt{BlairLacy}), the measure by Kvalseth (\texttt{Kvalseth}), Berry and Mielke's IOV (\texttt{BerryMielke}), Reardon (\texttt{Reardon}) and Garcia-Montalvo and Reynal-Querol's (\texttt{MRQ})
+This package provides functions to calculate concentration and dispersion in ordered rating scales. Concentration may also be described as agreement, consensus; diespersion is also known as polarization. It also implements other related measures to classify distributions. At its core, the package provides a generic city-block based \texttt{concentration} measure, and a generic measure of dispersion (\texttt{disper}). To use Van der Eijk's \citeyearpar{vdE2001} algorithmic approach agreement `A', call \texttt{agreement}. The derived \texttt{polarization} lets you calculate a polarization score based on agreement A. Values are inverted and standardized to [0, 1]. Other specific measures implemented: Leik's measure of ordinal dispersion (\texttt{Leik}), Tatsle and Wierman's (\texttt{consensus}), Blair and Lacy's (\texttt{dsquared}, \texttt{lsquared}, and \texttt{BlairLacy}), the measure by Kvalseth (\texttt{Kvalseth}), Berry and Mielke's IOV (\texttt{BerryMielke}), Reardon (\texttt{Reardon}) and Garcia-Montalvo and Reynal-Querol's (\texttt{MRQ})
 
-
-The package also includes functions to classify distributions according to Galtung's \citeyearpar{Galtung} AJUS-system (\texttt{ajus}), and changes over time according to Galtung's \citeyearpar{Galtung} ISD-system (\texttt{isd}). Moreover, the function \texttt{modes} can identify the position of multiple modes.
+The package includes functions to classify distributions according to Galtung's \citeyearpar{Galtung} AJUS-system (\texttt{ajus}), and changes over time according to Galtung's \citeyearpar{Galtung} ISD-system (\texttt{isd}). Moreover, the function \texttt{modes} can identify the position of multiple modes.
 
 \section{Getting Data In}
 

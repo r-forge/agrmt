@@ -1,7 +1,14 @@
+agrmt 1.42
+----------
+
+- new functions by Clem Aeppli to approximate variance/standard deviations
+- dist is now called disper to avoid conflict with R base
+- update licence to 2020
+
 agrmt 1.41
 ----------
 
-- adding new functions by Clem Aeppli (Reardon, censor, truncate, concentration, dist)
+- adding new functions by Clem Aeppli (Reardon, censor, truncate, concentration, disper)
 - clarifications in the documentation
 - rewriting some of the documentation
 - fixing typos in descriptions

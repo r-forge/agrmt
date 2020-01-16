@@ -1,4 +1,4 @@
-dist = function(A, B, metric = 2) {
+disper = function(A, B, metric = 2) {
   # measure of dispersion
   # input validation:
   if(length(A) != length(B) | length(A) == 0) stop("Error: A and B must have the same nonzero length")

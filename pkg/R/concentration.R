@@ -6,7 +6,7 @@ concentration <- function(V, metric = 2) {
   maxdisp_Fk = rep(x = 1/2, k - 1)    # the CMF for the point of maximal dispersion
   maxconc_Fk = c(1,rep(x = 0, k - 2)) # the CMF for the point of maximal concentration
   
-  D = dist(V_Fk, maxdisp_Fk, metric)
-  D_max = dist(maxdisp_Fk, maxconc_Fk, metric)
+  D = disper(V_Fk, maxdisp_Fk, metric)
+  D_max = disper(maxdisp_Fk, maxconc_Fk, metric)
   return(D/D_max)
 }
