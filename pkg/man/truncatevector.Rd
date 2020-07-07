@@ -1,8 +1,8 @@
-\name{truncate}
-\alias{truncate}
+\name{truncatevector}
+\alias{truncatevector}
 \title{Truncate helper function}
 \description{Helper function to truncate frequency vectors}
-\usage{truncate(V, left=0, right=100)}
+\usage{truncatevector(V, left=0, right=100)}
 \arguments{
   \item{V}{Vector}
   \item{left}{left to truncate}
