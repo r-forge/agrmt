@@ -8,7 +8,7 @@
   \item{B}{Vector}
   \item{metric}{city block metric}
 }
-\details{distance between vectors}
+\details{Calculates the distance between two frequency vectors.}
 
 \value{measure of distance}
 \author{Clem Aeppli}
