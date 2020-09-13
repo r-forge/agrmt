@@ -1,3 +1,7 @@
+agrmt 1.42.6
+------------
+- push to Rforge
+
 agrmt 1.42.5
 ------------
 - let collapse() handle NA
