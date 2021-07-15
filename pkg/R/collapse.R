@@ -5,7 +5,7 @@ collapse =
     #            pos = positions of the categories (necessary if there are categories with 0 observations)
     #                 if nothing i provided, we assume observations in all categories
     #                 e.g. if position 2 is not present in the population, no 0 will be added
-    #         na.rm = NA are removed
+    #         na.rm = NA are removed (default)
     if(na.rm == TRUE) {
       # remove NA from vector, as.numeric() to get back the vector
       D = as.numeric(na.omit(D))
