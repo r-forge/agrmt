@@ -1,11 +1,12 @@
 collapse =
-  function(D, pos=FALSE, na.rm=TRUE) {
+  function(D, pos=FALSE, na.rm=TRUE, na.replace = FALSE) {
     # Calculates a frequency vector F from a population vector D
     # Arguments:  D  = population vector
     #            pos = positions of the categories
     #                  (necessary if categories with 0 observations exist)
     #                  if not provided, we assume observations in all categories
     #          na.rm = NA are removed (default)
+    #    na.replaced = NA replaced with a specific value (default off)
     if(na.rm == TRUE) {
       # remove NA from vector, as.numeric() to get back the vector
       D = as.numeric(na.omit(D))
