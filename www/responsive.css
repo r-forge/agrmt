@@ -23,6 +23,8 @@ img {
   width: 20%;
 }
 
+.full {width: 100%;}
+
 header {
   background-color:#eee;
   width: 100%;
