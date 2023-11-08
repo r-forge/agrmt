@@ -2,7 +2,7 @@
 \alias{collapse}
 \title{Reduces a vector to a frequency vector}
 \description{Takes a vector and reduces it to a frequency vector.}
-\usage{collapse(D,pos=FALSE, na.rm=TRUE, na.replace=FALSE)}
+\usage{collapse(D,pos=FALSE, na.rm=TRUE)}
 \arguments{
   \item{D}{Vector}
   \item{pos}{Optional: position of categories}
@@ -12,7 +12,7 @@
 
 The argument \code{pos} is required if certain positions do not occur in the population (or if there is a chance that they do not occur in a specific sub-population). For example, if we have positions on a 7-point scale, and position 3 never occurs in the population, the argument \code{pos} must be specified. In this case, the argument may be \code{pos=1:7}. We can also use categories more generally, as in \code{c(-3, -1, 0, 0.5, 1, 2, 5)}. Specifying the positions of categories when all positions occur in the population has no side-effects. See the example for an illustration.
 
-By default, missing values (NA) are removed with \code{as.numeric(na.omit())}. This helps with some vectors that include NA that fail otherwise.}
+By default, missing values (NA) are removed with \code{as.numeric(na.omit())}. This helps with some vectors that include NA that fail otherwise. If NA are maintained with \code{na.rm=FALSE}, they are included as the last category. The argument \code{pos} cannot include NA as a position; NA are removed if the argument \code{pos} is used.}
 
 \value{A frequency vector}
 \author{Didier Ruedin}
