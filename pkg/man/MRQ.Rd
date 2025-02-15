@@ -5,7 +5,7 @@
 \usage{MRQ(Z)}
 \arguments{ \item{Z}{(Standardized) frequency vector}}
 \details{This function implements the polarization index introduced by Garcia-Montalvo
-and Reynal-Querol (2005), also known as the Reynal-Querol index of polarization (RQ). It is a measure of dispersion based on squared Euclidean distances. The frequency vector needs to be standardized for the Reynal-Querol index to work; if the sum of the frequency vector is not 1 (i.e. it is not standardized), the function automatically standardizes the frequency vector by dividing each element of the vector by the sum of the vector. The assumption is that the frequencies are complete.}
+and Reynal-Querol (2005), also known as the Reynal-Querol index of polarization (RQ). It is a measure of dispersion based on squared Euclidean distances. The frequency vector needs to be standardized for the Reynal-Querol index to work; if the sum of the frequency vector is not 1 (i.e. it is not standardized), the function automatically standardizes the frequency vector by dividing each element of the vector by the sum of the vector. The assumption is that the frequencies are complete. The order of the valures is not taken into consideration.}
 \value{Index of polarization (RQ).}
 \references{Garcia-Montalvo, Jose, and Marta Reynal-Querol. 2005. Ethnic Polarization, Potential Conflict, and Civil Wars. American Economic Review 95(3): 796-816.
 

@@ -21,6 +21,8 @@
 
 This package provides functions to calculate concentration and dispersion in ordered rating scales. Concentration may also be described as agreement, consensus; dispersion is also known as polarization. It also implements other related measures to classify distributions. At its core, the package provides a generic city-block based \texttt{concentration} measure, and a generic measure of dispersion (\texttt{disper}). To use Van der Eijk's \citeyearpar{vdE2001} algorithmic approach agreement `A', call \texttt{agreement}. The derived \texttt{polarization} lets you calculate a polarization score based on agreement A. Values are inverted and standardized to [0, 1]. Other specific measures implemented: Leik's measure of ordinal dispersion (\texttt{Leik}), Tatsle and Wierman's (\texttt{consensus}), Blair and Lacy's (\texttt{dsquared}, \texttt{lsquared}, and \texttt{BlairLacy}), the measure by Kvalseth (\texttt{Kvalseth}), Berry and Mielke's IOV (\texttt{BerryMielke}), Reardon (\texttt{Reardon}) and Garcia-Montalvo and Reynal-Querol's (\texttt{MRQ})
 
+For more details on the different measures of agreement and how they compare, see Aeppli, Clem, and Didier Ruedin. 2022. `How to Measure Agreement, Consensus, and Polarization in Ordinal Data'. SocArXiv. \url{https://doi.org/10.31235/osf.io/syzbr}.
+
 The package includes functions to classify distributions according to Galtung's \citeyearpar{Galtung} AJUS-system (\texttt{ajus}), and changes over time according to Galtung's \citeyearpar{Galtung} ISD-system (\texttt{isd}). Moreover, the function \texttt{modes} can identify the position of multiple modes.
 
 \section{Getting Data In}
@@ -31,9 +33,9 @@ The functions in this package use what I refer to as frequency vectors. A freque
 plot(c(10, 20, 30, 15, 4, 4), type="s", bty="n", ylab="Frequency", xlab="")
 \end{Scode}
 
-There are many ways to create frequency vectors, including the \texttt{table} function in R. Your data may already come in the form of a frequency vector. The package provides a helper function \texttt{collapse} to cater with empty cells. Consider a very simple case to illustrate the difference:
+There are many ways to create frequency vectors, including the \texttt{table} function in R. Your data may already come in the form of a frequency vector. The package provides a helper function \texttt{collapse} to cater with empty cells. Consider a simple case to illustrate the difference:
 
-\begin{Scode}{echo=TRUE,fig=FALSE}
+\begin{Scode}{echo=TRUE, fig=FALSE}
 library(agrmt)
 x = c(1,1,3) # these are our data
 # 2 observations with position 1,
@@ -62,7 +64,7 @@ Observed frequencies     & 30 & 40 & 210 & 130 & 530 & 50 & 10 \\
 \end{tabular}
 \end{table}
 
-The observed frequencies (30, 40, 210, 130, 530, 50, 10) constitute a frequency vector. The measure of agreement divides this into layers, starting with the lowest observed frequencies. The level of agreement for this layer is calculated, and weighted by the number of observations in this layer. This is repeated for all layers, using any additional observations, until we reach the highest observed frequencies. We begin with the cell with the lowest frequencies, in this case position 7 with 10 observations. This means that for the first layer, there are 10 observations for each position. This gives a level of agreement of 0 for this level. The weight of the level is the number of observations in this layer (70; that is 7 [positions] times 10 [observations]) divided by the total number of observations (1000). In this example, the weight of the first layer is $\frac{70}{1000}=0.07$. For the second layer, we have already used all 10 observations for position 7, so a 0 will be added. The second lowest frequency is the 20 left for position 1 (30 original observations minus 10 in level 1). The level of agreement for the second layer is 0.17, with a weight of 0.12.
+The observed frequencies (30, 40, 210, 130, 530, 50, 10) constitute a frequency vector. The measure of agreement divides this into layers, starting with the lowest observed frequencies. The level of agreement for this layer is calculated, and weighted by the number of observations in this layer. This is repeated for all layers, using any additional observations, until we reach the highest observed frequencies. We begin with the cell with the lowest frequencies, in this case position 7 with 10 observations. This means that for the first layer, there are 10 observations for each position. This gives a level of agreement of 0 for this level. The weight of the level is the number of observations in this layer (70; that is, 7 [positions] times 10 [observations]) divided by the total number of observations (1000). In this example, the weight of the first layer is $\frac{70}{1000}=0.07$. For the second layer, we have already used all 10 observations for position 7, so a 0 will be added. The second-lowest frequency is the 20 left for position 1 (30 original observations minus 10 in level 1). The level of agreement for the second layer is 0.17, with a weight of 0.12.
 
 We continue this way until all observations are used:
 
@@ -88,7 +90,7 @@ Using the weighted average, we get a level of agreement of 0.61 in this example.
 
 Levels of agreement range from $-1$ to $1$. There are three ideal-typical positions that help interpretation of the scores. If all respondents agree on the category (position), agreement is 1. This is illustrated in the top-left corner of the figure. If the respondents are evenly spread, and each category has the same number of responses, agreement is 0. This is illustrated at the top right of the figure. If respondents are divided, and half the responses are in one extreme category, and the other half are in the other extreme category, agreement is $-1$. This is shown at the bottom left of the figure. The following figure also includes an example between these ideal types (bottom right). Agreement is only defined if there are at least three response categories, and it does not tell you which of the categories is the most common one. For this reason, it is also advisable to look at an appropriate measure of central tendency, such as the interpolated median.
 
-\begin{Scode}{echo=FALSE,fig=TRUE, results=hide, width=4, height=5}
+\begin{Scode}{echo=FALSE, fig=TRUE, results=hide, width=4, height=5}
 split.screen(c(2,2))
 hist(c(1,1,1,1), breaks=0:4, xlim=c(0,4), ylim=c(0,4), col="grey", main="Agreement", xlab="Agreement = 1")
 screen(2)
@@ -107,12 +109,12 @@ To calculate agreement, we simply call \texttt{agreement} with the frequency vec
 
 Let us illustrate this using the data from above.
 
-\begin{Scode}{echo=TRUE,fig=FALSE}
-x <- c(30, 40, 210, 130, 530, 50, 10) # these are our data
+\begin{Scode}{echo=TRUE, fig=FALSE}
+x = c(30, 40, 210, 130, 530, 50, 10) # these are our data
 agreement(x)
 \end{Scode}
 
-Here are two additional examples, using data from van der Ejik's article. Van der Eijk gives the example of respondents placing political parties on a 7-point rating scale.
+Here are two additional examples, using data from van der Eijk's article. Van der Eijk gives the example of respondents placing political parties on a 7-point rating scale.
 
 \begin{table}[ht] % here
 \begin{tabular}{l c c c c c c c} %alignments are required
@@ -124,7 +126,7 @@ D66      & 1.6\% & 2.6\% & 8.2\% & 21\%  & 29.3\% & 27\%   & 10.3\% \\
 
 To calculate the level of agreement for these two frequency distributions, we can simply type \texttt{agreement(c(2.4,2.8,3.2,6.2,13.5,30.4,41.6))} for the PvdA, and \texttt{agreement(c(1.6,2.6,8.2,21,29.3,27,10.3))} for the D66. This gives us levels of agreement of 0.61 for the PvdA, and 0.48 for the D66.
 
-\begin{Scode}{echo=TRUE,fig=FALSE}
+\begin{Scode}{echo=TRUE, fig=FALSE}
 agreement(c(2.4,2.8,3.2,6.2,13.5,30.4,41.6)) # PvdA
 agreement(c(1.6,2.6,8.2,21,29.3,27,10.3))    # D66
 \end{Scode}
@@ -151,14 +153,14 @@ The agreement scores are suitable to express polarization, but the numbers are n
 
 Usage is equivalent to \texttt{agreement}. In the first example, we specify the entire data, use the \texttt{collapse} helper function to determine the frequency vector (note: there are no observations at position 6, even though this position is permitted), and calculate polarization values.
 
-\begin{Scode}{echo=TRUE,fig=FALSE}
+\begin{Scode}{echo=TRUE, fig=FALSE}
 polarization(collapse(c(1,2,4,2,5,2,7,7,3,1,2,1,3,2,4,
 1,5,2,3,2,4,2,3,1,1,3), pos=1:7))
 \end{Scode}
 
 Or to continue using the Dutch parties:
 
-\begin{Scode}{echo=TRUE,fig=FALSE}
+\begin{Scode}{echo=TRUE, fig=FALSE}
 polarization(c(2.4,2.8,3.2,6.2,13.5,30.4,41.6)) # PvdA
 polarization(c(1.6,2.6,8.2,21,29.3,27,10.3))    # D66
 \end{Scode}
@@ -167,7 +169,7 @@ In a typical setting, we would probably use a variable name from a data set (e.g
 
 \section{Leik's Consensus}
 
-\citet{Leik} introduced a measure of ordinal dispersion in 1966. It uses the cumulative frequency distribution to determine ordinal dispersion. The extremes (agreement, polarization) largely correspond to the types used by Cees van der Eijk. By contrast, the mid-point depends on the number of categories: it tends toward 0.5 as the number of categories increases. The van der Eijk measure has a fixed mid-point that is independent from the number of categories. Leik defends this difference by highlighting the increased probability of falling into polarized patterns when there are fewer categories. If all observations are in the same category, ordinal dispersion is 0. With half the observations in one extreme category, and half the observations in the other extreme, Leik's measure gives a value of 1.
+\citet{Leik} introduced a measure of ordinal dispersion in 1966. It uses the cumulative frequency distribution to determine ordinal dispersion. The extremes (agreement, polarization) largely correspond to the types used by Cees van der Eijk. By contrast, the mid-point depends on the number of categories: it tends toward 0.5 as the number of categories increases. The van der Eijk measure has a fixed mid-point that is independent of the number of categories. Leik defends this difference by highlighting the increased probability of falling into polarized patterns when there are fewer categories. If all observations are in the same category, ordinal dispersion is 0. With half the observations in one extreme category, and half the observations in the other extreme, Leik's measure gives a value of 1.
 
 Leik's ordinal dispersion measure is a percentage, and can be interpreted accordingly. Ordinal dispersion can be used to express consensus or agreement, simply by taking: 1 - ordinal dispersion.
 
@@ -201,11 +203,11 @@ The Shannon entropy can be calculated using \texttt{entropy}. This function foll
 
 \section{Garcia-Montalvo and Reynal-Querol}
 
-\citet{MRQ} calculate polarization as introduced by \citet{RQ}. This measure is known as the Reynal-Querol index of polarization (RQ), Montalvo and Reynal-Querol (MRQ), or Garcia-Montalvo and Reynal-Querol. The measure of dispersion based on squared Euclidean distances. The frequency vector needs to be standardized for the Reynal-Querol index to work; if the sum of the frequency vector is not 1 (i.e. it is not standardized), the function automatically standardizes the frequency vector by dividing each element of the vector by the sum of the vector. The assumption is that the frequencies are complete.
+\citet{MRQ} calculates polarization, as introduced by \citet{RQ}. This measure is known as the Reynal-Querol index of polarization (RQ), Montalvo and Reynal-Querol (MRQ), or Garcia-Montalvo and Reynal-Querol. The measure of dispersion based on squared Euclidean distances. The frequency vector needs to be standardized for the Reynal-Querol index to work; if the sum of the frequency vector is not 1 (i.e. it is not standardized), the function automatically standardizes the frequency vector by dividing each element of the vector by the sum of the vector. The assumption is that the frequencies are complete.
 
 \section{AJUS}
 
-The package includes a few additional functions for frequency vectors. The AJUS classification of distributions is one: \citet{Galtung} introduced a system to classify distributions according to shape. This is a means to reduce complexity. For full details refer to Galtung's book on social research.
+The package includes a few additional functions for frequency vectors. The AJUS classification of distributions is one: \citet{Galtung} introduced a system to classify distributions according to shape. This is a means to reduce complexity. For full details, refer to Galtung's book on social research.
 
 \texttt{ajus(distribution)} gives you the shape or type of the distribution, as well as whether there is a skew. I have added two new types F and L to complement the ones identified by Galtung. The skew is given as $-1$ for a negative skew, 0 for absence of skew, or +1 for a positive skew.
 
@@ -220,21 +222,21 @@ You can choose whether to use a strict AJUS system following Galtung, or use the
 \item F: flat, no peak (modified only)
 \end{itemize}
 
-Galtung developed the AJUS system for a somewhat systematic classification of distributions, but not for the use on computers. The advantage of using a function on the computer is twofold. On the one hand, we can easily apply the AJUS system to many distributions, \texttt{sapply} may be your friend there. On the other hand, the \emph{tolerance} used in the AJUS system is applied in a systematic manner. When using human judgement on whether two values are `roughly the same' or different, a really systematic approach cannot guaranteed. In the AJUS function, you can specify the argument \texttt{tolerance} to change the tolerance. The AJUS function ignores all differences equal to or smaller than the tolerance parameter. The package default is 0.1, possibly useful when working with values between 0 and 1, in which case it corresponds to 10 per cent. The \texttt{tolerance} parameter is not a trivial choice, and it can affect results.
+Galtung developed the AJUS system for a somewhat systematic classification of distributions, but not for the use on computers. The advantage of using a function on the computer is twofold. On the one hand, we can easily apply the AJUS system to many distributions, \texttt{sapply} may be your friend there. On the other hand, the \emph{tolerance} used in the AJUS system is applied systematically. When using human judgement on whether two values are `roughly the same' or different, a really systematic approach cannot be guaranteed. In the AJUS function, you can specify the argument \texttt{tolerance} to change the tolerance. The AJUS function ignores all differences equal to or smaller than the tolerance parameter. The package default is 0.1, possibly useful when working with values between 0 and 1, in which case it corresponds to 10 per cent. The \texttt{tolerance} parameter is not a trivial choice, and it can affect results.
 
-\begin{Scode}{echo=TRUE,fig=FALSE}
+\begin{Scode}{echo=TRUE, fig=FALSE}
 # Example 1: different types of distributions
-V1 <- c(0,1,0)     # A
+V1 = c(0,1,0)     # A
 ajus(V1)
-V2 <- c(0,0,1)     # J
+V2 = c(0,0,1)     # J
 ajus(V2)
-V3 <- c(1,0,1)     # U
+V3 = c(1,0,1)     # U
 ajus(V3)
-V4 <- c(1,0,1,0)   # S
+V4 = c(1,0,1,0)   # S
 ajus(V4)
-V5 <- c(0,0,0)     # F
+V5 = c(0,0,0)     # F
 ajus(V5)
-V6 <- c(1,0,0)     # L
+V6 = c(1,0,0)     # L
 ajus(V6)
 ajus(V6, variant="strict") # gives J
 \end{Scode}
@@ -243,7 +245,7 @@ Additional functions are provided to use the AJUS system: \texttt{ajusCheck} tak
 
 \begin{Scode}{echo=TRUE, fig=FALSE}
 # Example 2: varying tolerance to check sensitivity
-V7 <- c(0,0,1,2,1)
+V7 = c(0,0,1,2,1)
 ajus(V7, tolerance=0.5)
 ajus(V7, tolerance=1)
 ajusCheck(V7, t=c(0.1, 0.5, 0.6, 1))
@@ -256,7 +258,7 @@ ajusPlot(V7)
 
 \section{ISD}
 
-The ISD system by \citet{Galtung} is another way to reduce complexity, this time for changes over  time. The ISD takes a vector with three time points. These three points describe two periods during which changes may occur (that is two transition points). \texttt{isd(distribution)} gives you a type (i.e the number) and a description of the type (i.e. the description in words).
+The ISD system by \citet{Galtung} is another way to reduce complexity, this time for changes over  time. The ISD takes a vector with three time points. These three points describe two periods during which changes may occur (that is, two transition points). \texttt{isd(distribution)} gives you a type (i.e. the number) and a description of the type (i.e. the description in words).
 
 \begin{itemize}
 \item Type 1: increase in both periods
@@ -275,7 +277,7 @@ The tolerance parameter works like described in the previous section on AJUS.
 % needs examples for each distribution type, plot some of these
 
 \section{(Multiple) Modes}
-The function \texttt{modes} tells you at which position the mode is. This can be used, for instance, in conjunction with the agreement function to identify at which point agreement is reached (not only that). The function accepts frequency distributions where multiple positions are the most common ones, which can happen in ordered rating scales. The function \texttt{secondModes} additionally gives you the value and position(s) of the second most common value. In addition to the mode and the positions, the functions also indicate whether these values are contiguous (i.e. in neighbouring response categories).
+The function \texttt{modes} tells you at which position the mode is. This can be used, for instance, jointly with the agreement function to identify at which point agreement is reached (not only that). The function accepts frequency distributions where multiple positions are the most common ones, which can happen in ordered rating scales. The function \texttt{secondModes} additionally gives you the value and position(s) of the second most common value. In addition to the mode and the positions, the functions also indicate whether these values are contiguous (i.e. in neighbouring response categories).
 
 A \texttt{tolerance} parameter is used to ignore small differences. See the section on AJUS above for details.
 
@@ -283,32 +285,32 @@ Let us look at made-up examples to illustrate the function. The output first sho
 
 In the first example, we look at a simple frequency vector. No categories are specified (\texttt{pos} argument not declared), so the categories are assumed to be 1:7 in this case.
 
-\begin{Scode}{echo=TRUE,fig=FALSE}
+\begin{Scode}{echo=TRUE, fig=FALSE}
 # Example 1: finding the mode
-V1 <- c(30,40,210,130,530,50,10)
+V1 = c(30,40,210,130,530,50,10)
 modes(V1) # will find position 5
 \end{Scode}
 
-Here is a shorter frequency vector, again without specifying the categories -- 1 to 4 are assumed.
+Here is a shorter frequency vector, again without specifying the categories --- 1 to 4 are assumed.
 
-\begin{Scode}{echo=TRUE,fig=FALSE}
+\begin{Scode}{echo=TRUE, fig=FALSE}
 # Example 2:
-V2 <- c(3,0,4,1)
+V2 = c(3,0,4,1)
 modes(V2) # will find position 3
 \end{Scode}
 
 This example illustrates the \texttt{pos} argument. The frequency vector from the previous example is reused, but it is specified that the categories refer to values of $[-1, 0, 1, 2]$. The mode identified reflects this change, while the position is unchanged (since the same frequency vector is used).
 
-\begin{Scode}{echo=TRUE,fig=FALSE}
+\begin{Scode}{echo=TRUE, fig=FALSE}
 # Example 3: providing categories
 modes(V2,pos=-1:2) # will still find position 3, but give the value of 1 as mode
 \end{Scode}
 
 This example illustrates multiple modes. The frequencies of 528 and 530 are nearly the same, that is to say given the (default) tolerance they are considered the same.
 
-\begin{Scode}{echo=TRUE,fig=FALSE}
+\begin{Scode}{echo=TRUE, fig=FALSE}
 # Example 4: similar values
-V3 <- c(30,40,510,130,530,50,10)
+V3 = c(30,40,510,130,530,50,10)
 modes(V3, tolerance=30) # will find positions 3 and 5 (510 and 530 are nearly the same)
 \end{Scode}
 

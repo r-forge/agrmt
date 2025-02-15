@@ -1,8 +1,8 @@
 Package: agrmt
 Type: Package
 Title: Calculate Concentration and Dispersion in Ordered Rating Scales
-Version: 1.42.14
-Date: 2024-01-04
+Version: 1.42.15
+Date: 2025-02-15
 Author: Didier Ruedin [aut, cre]
     Clem Aeppli [ctb]
 Maintainer: Didier Ruedin <didier.ruedin@unine.ch>
