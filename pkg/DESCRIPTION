@@ -1,6 +1,6 @@
 Package: agrmt
-Version: 1.42.17
-Date: 2026-01-02
+Version: 1.42.18
+Date: 2026-03-04
 Title: Calculate Concentration and Dispersion in Ordered Rating Scales
 Authors@R: c(person(given = "Didier",
                   family = "Ruedin",
@@ -9,7 +9,8 @@ Authors@R: c(person(given = "Didier",
                   comment = c(ORCID = "0000-0001-5213-4316")),
               person(given = "Clem",
                      family = "Aeppli",
-                     role = "ctb"))
+                     role = "ctb",
+                     comment = c(ORCID = "0000-0002-4003-7938")))
 Maintainer: Didier Ruedin <didier.ruedin@unine.ch>
 Description: Calculates concentration and dispersion in ordered rating scales. It implements various measures of concentration and dispersion to describe what researchers variably call agreement, concentration, consensus, dispersion, or polarization among respondents in ordered data. It also implements other related measures to classify distributions. In addition to a generic city-block based concentration measure and a generic dispersion measure, the package implements various measures, including van der Eijk's (2001) <DOI: 10.1023/A:1010374114305> measure of agreement A, measures of concentration by Leik, Tatsle and Wierman, Blair and Lacy, Kvalseth, Berry and Mielke, Reardon, and Garcia-Montalvo and Reynal-Querol. Furthermore, the package provides an implementation of Galtungs AJUS-system to classify distributions, as well as a function to identify the position of multiple modes.
 License: MIT + file LICENSE
