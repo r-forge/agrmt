@@ -19,9 +19,9 @@
 
 \section{Overview}
 
-This package provides functions to calculate concentration and dispersion in ordered rating scales. Concentration may also be described as agreement, consensus; dispersion is also known as polarization. It also implements other related measures to classify distributions. At its core, the package provides a generic city-block based \texttt{concentration} measure, and a generic measure of dispersion (\texttt{disper}). To use Van der Eijk's \citeyearpar{vdE2001} algorithmic approach agreement `A', call \texttt{agreement}. The derived \texttt{polarization} lets you calculate a polarization score based on agreement A. Values are inverted and standardized to [0, 1]. Other specific measures implemented: Leik's measure of ordinal dispersion (\texttt{Leik}), Tatsle and Wierman's (\texttt{consensus}), Blair and Lacy's (\texttt{dsquared}, \texttt{lsquared}, and \texttt{BlairLacy}), the measure by Kvalseth (\texttt{Kvalseth}), Berry and Mielke's IOV (\texttt{BerryMielke}), Reardon (\texttt{Reardon}) and Garcia-Montalvo and Reynal-Querol's (\texttt{MRQ})
+This package provides functions to calculate concentration and dispersion in ordered rating scales. Concentration may also be described as agreement, consensus; dispersion is also known as polarization. It also implements other related measures to classify distributions. At its core, the package provides a generic city-block based \texttt{concentration} measure, and a generic measure of dispersion (\texttt{disper}). To use Van der Eijk's \citeyearpar{vdE2001} algorithmic approach agreement `A', call \texttt{agreement}. The derived \texttt{polarization} lets you calculate a polarization score based on agreement A. Values are inverted and standardized to [0, 1]. Other specific measures implemented: Leik's measure of ordinal dispersion (\texttt{Leik}), Tatsle and Wierman's (\texttt{consensus}), Blair and Lacy's (\texttt{dsquared}, \texttt{lsquared}, and \texttt{BlairLacy}), the measure by Kvalseth (\texttt{Kvalseth}), Berry and Mielke's IOV (\texttt{BerryMielke}), Reardon (\texttt{Reardon}) and Garcia-Montalvo and Reynal-Querol's (\texttt{MRQ}).
 
-For more details on the different measures of agreement and how they compare, see Aeppli, Clem, and Didier Ruedin. 2022. `How to Measure Agreement, Consensus, and Polarization in Ordinal Data'. SocArXiv. \url{https://doi.org/10.31235/osf.io/syzbr}.
+For more details on the different measures of agreement and how they compare, see: Aeppli, Clem, and Didier Ruedin. 2026. Let's Measure Concentration and Dispersion in Ordinal Data. Methods, Data, Analyses. Forthcoming. A previous version is available from SocArXiv: \url{https://doi.org/10.31235/osf.io/syzbr}.
 
 The package includes functions to classify distributions according to Galtung's \citeyearpar{Galtung} AJUS-system (\texttt{ajus}), and changes over time according to Galtung's \citeyearpar{Galtung} ISD-system (\texttt{isd}). Moreover, the function \texttt{modes} can identify the position of multiple modes.
 
@@ -58,7 +58,7 @@ Ordered rating scales are a common format in surveys, and often we are intereste
 We can use the example provided by van der Eijk (p.331) to illustrate the use of layers.
 
 \begin{table}[ht] % here
-\begin{tabular}{l c c c c c c c} %alignments are required
+\begin{tabular}{l c c c c c c c} % alignments are required
 Position on rating scale &  1 &  2 &   3 &   4 &   5 &  6 &  7 \\
 Observed frequencies     & 30 & 40 & 210 & 130 & 530 & 50 & 10 \\
 \end{tabular}
@@ -165,7 +165,7 @@ polarization(c(2.4,2.8,3.2,6.2,13.5,30.4,41.6)) # PvdA
 polarization(c(1.6,2.6,8.2,21,29.3,27,10.3))    # D66
 \end{Scode}
 
-In a typical setting, we would probably use a variable name from a data set (e.g. POSITION): \texttt{polarization(collapse(POSITION, pos=0:5))}.
+In a typical setting, we would probably use a variable name from a dataset (e.g. POSITION): \texttt{polarization(collapse(POSITION, pos=0:5))}.
 
 \section{Leik's Consensus}
 
@@ -203,7 +203,7 @@ The Shannon entropy can be calculated using \texttt{entropy}. This function foll
 
 \section{Garcia-Montalvo and Reynal-Querol}
 
-\citet{MRQ} calculates polarization, as introduced by \citet{RQ}. This measure is known as the Reynal-Querol index of polarization (RQ), Montalvo and Reynal-Querol (MRQ), or Garcia-Montalvo and Reynal-Querol. The measure of dispersion based on squared Euclidean distances. The frequency vector needs to be standardized for the Reynal-Querol index to work; if the sum of the frequency vector is not 1 (i.e. it is not standardized), the function automatically standardizes the frequency vector by dividing each element of the vector by the sum of the vector. The assumption is that the frequencies are complete.
+\citet{MRQ} calculates polarization, as introduced by \citet{RQ}. This measure is known as the Reynal-Querol index of polarization (RQ), Montalvo and Reynal-Querol (MRQ), or Garcia-Montalvo and Reynal-Querol. The measure of dispersion based on squared Euclidean distances. The frequency vector needs to be standardized for the Reynal-Querol index to work. If the sum of the frequency vector is not 1 (i.e. it is not standardized), the function automatically standardizes the frequency vector by dividing each element of the vector by the sum of the vector. The assumption is that the frequencies are complete.
 
 \section{AJUS}
 
@@ -258,7 +258,7 @@ ajusPlot(V7)
 
 \section{ISD}
 
-The ISD system by \citet{Galtung} is another way to reduce complexity, this time for changes over  time. The ISD takes a vector with three time points. These three points describe two periods during which changes may occur (that is, two transition points). \texttt{isd(distribution)} gives you a type (i.e. the number) and a description of the type (i.e. the description in words).
+The ISD system by \citet{Galtung} is another way to reduce complexity, this time for changes over time. The ISD takes a vector with three time points. These three points describe two periods during which changes may occur (that is, two transition points). \texttt{isd(distribution)} gives you a type (i.e. the number) and a description of the type (i.e. the description in words).
 
 \begin{itemize}
 \item Type 1: increase in both periods
@@ -319,6 +319,8 @@ modes(V3, tolerance=30) # will find positions 3 and 5 (510 and 530 are nearly th
 \section{Going Further}
 
 For further documentation, please refer to the original contributions by \citet{vdE2001}, \citet{Leik}, \citet{TW}, \citet{BerryMielke}, \citet{BlairLacy}, \citet{RQ}, and \citet{Galtung}, and refer to the package help files.
+
+For more details on the different measures of agreement and how they compare, see: Aeppli, Clem, and Didier Ruedin. 2026. Let's Measure Concentration and Dispersion in Ordinal Data. Methods, Data, Analyses. Forthcoming.
 
 \bibliographystyle{plainnat}
 
