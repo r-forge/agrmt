@@ -1,3 +1,7 @@
+agrmt 1.42.20
+-------------
+- trigger re-build on R-Forge
+
 agrmt 1.42.19
 -------------
 - fixing typos in vignettes documentation; link to MDA paper
