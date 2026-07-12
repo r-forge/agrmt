@@ -1,3 +1,7 @@
+agrmt 1.42.21
+-------------
+- fixing BibTeX warnings
+
 agrmt 1.42.20
 -------------
 - trigger re-build on R-Forge

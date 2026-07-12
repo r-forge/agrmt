@@ -183,7 +183,7 @@ Usage: \texttt{consensus(V)}.
 
 \subsection{Entropy}
 
-The Shannon entropy can be calculated using \texttt{entropy}. This function follows \citet{}TW and ignores categories with zero observations. The Shannon entropy ignores the order of categories; use \texttt{consensus} to consider the order of categories.
+The Shannon entropy can be calculated using \texttt{entropy}. This function follows \citet{TW} and ignores categories with zero observations. The Shannon entropy ignores the order of categories; use \texttt{consensus} to consider the order of categories.
 
 \section{Berry and Mielke's IOV}
 
