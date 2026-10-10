@@ -1,6 +1,6 @@
 Package: agrmt
-Version: 1.42.22
-Date: 2026-09-20
+Version: 1.42.23
+Date: 2026-10-10
 Title: Calculate Concentration and Dispersion in Ordered Rating Scales
 Authors@R: c(person(given = "Didier",
                   family = "Ruedin",

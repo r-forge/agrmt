@@ -15,7 +15,7 @@ Contributor: Clem Aeppli
 
 Maintainer: Didier Ruedin <didier.ruedin@unine.ch>
 }
-\references{Aeppli, C., & Ruedin, D. (2026). Let’s Measure Concentration and Dispersion in Ordinal Data. Methods, Data, Analyses, 1–30. https://doi.org/10.25521/mda.578
+\references{Aeppli, C., & Ruedin, D. (2026). Let's Measure Concentration and Dispersion in Ordinal Data. Methods, Data, Analyses, 1-30. https://doi.org/10.25521/mda.578
 
 van der Eijk, C. (2001) Measuring agreement in ordered rating scales, Quality and Quantity 35(3):325-341.
 
